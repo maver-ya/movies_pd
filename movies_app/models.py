@@ -3,21 +3,12 @@ from django.db import models
 from .base import TimeStampedModel
 
 
-class Movie(TimeStampedModel):
+class Profession(TimeStampedModel):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    year = models.PositiveIntegerField()
-    description = models.TextField()
-    duration = models.PositiveIntegerField()
-    budget = models.CharField(max_length=255)
-    rate = models.PositiveIntegerField()
-    kinopoisk_id = models.PositiveIntegerField()
-    rating_kp = models.PositiveIntegerField()
-    rating_imdb = models.PositiveIntegerField()
-    poster = models.CharField(max_length=255)
 
     class Meta:
-        db_table = 'movies'
+        db_table = 'profession'
 
     def __str__(self):
         return self.name
@@ -26,24 +17,11 @@ class Movie(TimeStampedModel):
 class Person(TimeStampedModel):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    year = models.PositiveIntegerField()
-    country_id = models.ForeignKey('movies_app.Country', on_delete=models.CASCADE, related_name="nation")
-    sex = models.CharField(max_length=255)
-    photo = models.CharField(max_length=255)
+    photo = models.CharField(max_length=255, default="")
+    profession = models.ManyToManyField(Profession)
 
     class Meta:
         db_table = 'persons'
-
-    def __str__(self):
-        return self.name
-
-
-class Profession(TimeStampedModel):
-    id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        db_table = 'profession'
 
     def __str__(self):
         return self.name
@@ -84,43 +62,25 @@ class Genre(TimeStampedModel):
         return self.name
 
 
-class MoviePerson(TimeStampedModel):
+class Movie(TimeStampedModel):
     id = models.BigAutoField(primary_key=True)
-    movie = models.ForeignKey('movies_app.Movie', on_delete=models.CASCADE, related_name='people')
-    person = models.ForeignKey('movies_app.Person', on_delete=models.CASCADE, related_name='roles')
+    name = models.CharField(max_length=255)
+    year = models.PositiveIntegerField()
+    description = models.TextField()
+    duration = models.PositiveIntegerField()
+    budget = models.CharField(max_length=255)
+    rate = models.PositiveIntegerField()
+    kinopoisk_id = models.PositiveIntegerField()
+    rating_kp = models.FloatField()
+    rating_imdb = models.FloatField()
+    poster = models.CharField(max_length=255)
+    genre = models.ManyToManyField(Genre)
+    country = models.ManyToManyField(Country)
+    persons = models.ManyToManyField(Person)
+    movie_type = models.CharField(max_length=20)
 
     class Meta:
-        db_table = 'moviePerson'
+        db_table = 'movies'
 
     def __str__(self):
-        return f'{self.id} ({self.movie}, {self.person})'
-
-
-class PersonProfession(TimeStampedModel):
-    id = models.BigAutoField(primary_key=True)
-    person_id = models.ForeignKey('movies_app.Person', on_delete=models.CASCADE, related_name='professions')
-    profession_id = models.ForeignKey('movies_app.Profession', on_delete=models.CASCADE, related_name='performers')
-
-    class Meta:
-        db_table = 'personProfession'
-
-    def __str__(self):
-        return f'{self.id} ({self.person_id}, {self.profession_id})'
-
-
-class MovieGenre(TimeStampedModel):
-    id = models.BigAutoField(primary_key=True)
-    movie_id = models.ForeignKey('movies_app.Movie', on_delete=models.CASCADE, related_name="mg")
-    genre_id = models.ForeignKey('movies_app.Genre', on_delete=models.CASCADE, related_name="gm")
-
-    class Meta:
-        db_table = 'movieGenre'
-
-
-class MovieCountry(TimeStampedModel):
-    id = models.BigAutoField(primary_key=True)
-    movie_id = models.ForeignKey('movies_app.Movie', on_delete=models.CASCADE, related_name="mc")
-    country_id = models.ForeignKey('movies_app.Country', on_delete=models.CASCADE, related_name="cm")
-
-    class Meta:
-        db_table = 'movieCountry'
+        return self.name
