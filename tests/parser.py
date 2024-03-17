@@ -8,7 +8,7 @@ def fulfill_film_json(data):
     listFields = ['id', 'names', 'year', 'description',
                   'slogan', 'rating', 'ageRating', 'budget',
                   'movieLength', 'genres', 'countries', 'poster',
-                  'persons', 'alternativeName']
+                  'persons', 'alternativeName', 'type']
     for key in listFields:
         if key not in data.keys():
             if key in ['year', 'duration', 'ageRating']:
@@ -38,7 +38,7 @@ def parser_film(film_id):
     listFields = ['id', 'name', 'year', 'description',
                   'slogan', 'rating', 'ageRating', 'budget',
                   'movieLength', 'genres', 'countries', 'poster',
-                  'persons']
+                  'persons', 'type']
     response = get(url, headers={"X-API-KEY": get_apikey()},
                    params={"id": film_id, 'selectFields': listFields})
     data = response.json()
@@ -66,7 +66,6 @@ def main_parser(film_id):
     data = parser_film(film_id)
     if not data:
         return 0
-
     # add film
     new_film = add_film(data)
     if new_film:
@@ -79,24 +78,22 @@ def main_parser(film_id):
                 new_person = add_person(person)
                 if not new_person:
                     continue
-                new_person_profession = add_person_profession(new_person, profession)
-                new_person_film = add_person_film(new_film, new_person)
+                new_person.profession.add(profession)
+                new_film.persons.add(new_person)
 
                 for g in data['genres']:
                     genre = Genre.objects.filter(name=g['name'])[0]
-                    new_film_genre = add_film_genre(new_film, genre)
+                    new_film.genre.add(genre)
 
                 for c in data['countries']:
                     country = Country.objects.filter(name=c['name'])[0]
-                    new_film_country = add_film_country(new_film, country)
+                    new_film.country.add(country)
 
 
 def main():
     movies = Movie.objects.all()
     used_ids = [movie.kinopoisk_id for movie in movies]
-    all_ids = list(range(1306, 1000000))
-    my_range = sorted(list(set(all_ids) - set(used_ids)))
-    for i in my_range:
+    for i in range(max(used_ids), 10**6):
         main_parser(i)
 
 
