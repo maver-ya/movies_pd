@@ -27,7 +27,8 @@ def add_film(data):
             kinopoisk_id=data['id'],
             rating_kp=data['rating']['kp'],
             rating_imdb=data['rating']['imdb'],
-            poster=data['poster']['url']
+            poster=data['poster']['url'],
+            movie_type=data['type']
         )
         try:
             new_film.save()

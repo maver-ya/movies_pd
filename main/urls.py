@@ -26,5 +26,5 @@ urlpatterns = [
     path('about/', views.about),
     path('joinus/', views.joinus),
     path('review/', views.review),
-    path('single/', views.single)
+    path('single/<int:id>', views.single)
 ]
