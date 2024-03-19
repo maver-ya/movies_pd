@@ -98,8 +98,7 @@ def main():
 
 
 def delete():
-    Movie.objects.all().delete()
-    Person.objects.all().delete()
+    print(list(zip(range(5), range(1, 6))))
 
 
 if __name__ == "__main__":
