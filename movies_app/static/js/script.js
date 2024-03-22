@@ -9,6 +9,9 @@ function movies_f(page= -1) {
         if (genre === "----") {
                 genre = "any";
         }
+        if (page === -1) {
+                page = 0;
+        }
         document.location.search = `?genre=${genre}&country=${country}&page=${page}`
         console.log('123')
     }

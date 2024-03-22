@@ -78,7 +78,7 @@
                         <option value="any">----</option>
                         {% for country in countries %}
                         {% if country.name != "No data" %}
-                        {% if country.name == user_county %}
+                        {% if country.name == user_country %}
                         <option value="{{country.name}}" selected>{{country.name}}</option>
                         {% else %}
                         <option value="{{country.name}}">{{country.name}}</option>
