@@ -62,6 +62,23 @@ def parser_person(person_id):
     return {"name": name, "photo": photo}
 
 
+def add_genres():
+    url = "https://api.kinopoisk.dev/v1/movie/possible-values-by-field"
+    data = get(url=url, headers={"X-API-KEY": get_apikey()}, params={"field": "genres.name"}).json()
+    for line in data:
+        genre = line["name"]
+        new_genre = Genre(name=genre)
+        new_genre.save()
+
+def add_countries():
+    url = "https://api.kinopoisk.dev/v1/movie/possible-values-by-field"
+    data = get(url=url, headers={"X-API-KEY": get_apikey()}, params={"field": "countries.name"}).json()
+    for line in data:
+        country = line["name"]
+        new_country = Country(name=country)
+        new_country.save()
+
+
 def main_parser(film_id):
     data = parser_film(film_id)
     if not data:
@@ -92,8 +109,8 @@ def main_parser(film_id):
 
 def main():
     movies = Movie.objects.all()
-    used_ids = [movie.kinopoisk_id for movie in movies]
-    for i in range(max(used_ids), 10**6):
+    used_ids = [movie.kinopoisk_id for movie in movies] + [298]
+    for i in range(max(used_ids), 10 ** 6):
         main_parser(i)
 
 

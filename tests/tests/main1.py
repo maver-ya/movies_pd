@@ -1,7 +1,6 @@
 def zaebis():
     from requests import get
-    from movies_app.models import Person, Movie, Genre, Profession, MovieGenre, MoviePerson, MovieCountry, \
-        PersonProfession, Country
+    from movies_app.models import Person, Movie, Genre, Profession, Country
 
     api_key = "YCZD8N5-YDB48VH-G6S7GBP-B3BSPE8"
     url = "https://api.kinopoisk.dev/v1.4/movie"

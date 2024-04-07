@@ -6,7 +6,7 @@ NAME = "RMDb"
 
 
 def index(request):
-    data = Movie.objects.order_by("kinopoisk_id")[:10]
+    data = Movie.objects.order_by("-rating_kp")[:10]
     latest_movie1 = Movie.objects.order_by("-year")[:2]
     latest_movie2 = Movie.objects.order_by("-year")[2:6]
     comedies = Movie.objects.filter(genre__name="комедия").order_by("kinopoisk_id")[:5]
@@ -37,7 +37,8 @@ def review(request):
 
     user_genre = request.GET.get("genre")
     user_country = request.GET.get("country")
-    user_page = int(request.GET.get("page"))
+    user_page = int(request.GET.get("page")) if request.GET.get("page")\
+        else 0
     print(user_page)
     ch_genres = [user_genre] if user_genre != "any" else list(map(lambda x: x.name, genres))
     ch_countries = [user_country] if user_country != "any" else list(map(lambda x: x.name, country))
