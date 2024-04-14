@@ -1,7 +1,7 @@
 from django.db import models
 
 from .base import TimeStampedModel
-
+from django.contrib.auth.models import User
 
 class Profession(TimeStampedModel):
     id = models.BigAutoField(primary_key=True)
@@ -84,3 +84,17 @@ class Movie(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+
+class Review(TimeStampedModel):
+    id = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ur')
+    movie = models.ForeignKey('movies_app.Movie', on_delete=models.CASCADE, related_name='mr')
+    rating = models.IntegerField(default=0)
+    comments = models.TextField(blank=True)
+
+    class Meta:
+        db_table = 'Review'
+
+    def str(self):
+        return f'Review by {self.user.username} on {self.product.name}'
