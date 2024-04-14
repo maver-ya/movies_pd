@@ -106,6 +106,12 @@
                         </form>
                     </div>
 
+                    <div class="reviews">
+                        {%for review in reviews%}
+                        <p>{{review.comments}}</p><br>
+                        {% endfor %}
+                    </div>
+
                 </div>
             </div>
         </div> <!-- .container -->
