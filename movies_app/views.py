@@ -59,7 +59,7 @@ def review(request):
 
 def single(request, id):
     movie = Movie.objects.filter(kinopoisk_id=id).first()
-    reviews = Review.objects.all()
+    reviews = Review.objects.filter(movie=movie).all()
     persons = movie.persons
 
     actors = persons.filter(profession__name="актеры")[:3]
