@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
 from movies_app.models import *
+from django.shortcuts import render, redirect
+from .models import Review
+from .forms import ReviewForm
 
 NAME = "RMDb"
 
@@ -38,7 +41,7 @@ def review(request):
 
     user_genre = request.GET.get("genre")
     user_country = request.GET.get("country")
-    user_page = int(request.GET.get("page")) if request.GET.get("page")\
+    user_page = int(request.GET.get("page")) if request.GET.get("page") \
         else 0
     print(user_page)
     ch_genres = [user_genre] if user_genre != "any" else list(map(lambda x: x.name, genres))
@@ -56,7 +59,7 @@ def review(request):
 
 def single(request, id):
     movie = Movie.objects.filter(kinopoisk_id=id).first()
-
+    reviews = Review.objects.all()
     persons = movie.persons
 
     actors = persons.filter(profession__name="актеры")[:3]
@@ -67,5 +70,19 @@ def single(request, id):
     genres = movie.genre.all()[:4]
     str_genre = '/'.join(list(map(lambda x: x.name.capitalize(), genres)))
 
-    data = {"movie": movie, 'actors': str_actors, "directors": str_directors, "genres": str_genre, "title": NAME}
+    data = {"reviews": reviews, "movie": movie, 'actors': str_actors, "directors": str_directors, "genres": str_genre,
+            "title": NAME}
     return render(request, 'single.html', context=data)
+
+
+def submit_review(request):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            new_review = form.save(commit=False)
+            new_review.user = request.user
+            new_review.save()
+            return redirect(request.META['HTTP_REFERER'])
+        else:
+            form = ReviewForm()
+            return 0  # вывод ошибки

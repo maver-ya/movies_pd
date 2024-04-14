@@ -90,7 +90,6 @@ class Review(TimeStampedModel):
     id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ur')
     movie = models.ForeignKey('movies_app.Movie', on_delete=models.CASCADE, related_name='mr')
-    rating = models.IntegerField(default=0)
     comments = models.TextField(blank=True)
 
     class Meta:
