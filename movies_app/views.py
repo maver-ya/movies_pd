@@ -18,7 +18,8 @@ def index(request):
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    data = {"title": NAME}
+    return render(request, 'contact.html', context=data)
 
 
 def about(request):
