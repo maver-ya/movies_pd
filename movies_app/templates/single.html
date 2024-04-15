@@ -98,10 +98,7 @@
                     <div class="form">
                         <form method="post">
                             {% csrf_token %}
-                            <div class="form-group">
-                                <label for="comments">Comments:</label>
-                                <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
-                            </div>
+                            {{ form.as_p }}
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
