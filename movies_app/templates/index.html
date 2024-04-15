@@ -12,7 +12,7 @@
     <link href="../static/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Loading main css file -->
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/main.css">
 
     <!--[if lt IE 9]>
     <script src="../static/js/ie-support/html5.js"></script>
@@ -61,9 +61,10 @@
                         <div class="slider">
                             <ul class="slides">
                                 {%for movie in movies%}
-                                <li><a style="display: flex; justify-content: center" href="single/{{movie.kinopoisk_id}}"><img src="{{movie.poster}}"></a></li>
+                                <li><a style="display: flex; justify-content: center"
+                                       href="single/{{movie.kinopoisk_id}}"><img src="{{movie.poster}}"></a></li>
                                 {% endfor %}
-                           </ul>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -71,7 +72,10 @@
                             {%for movie in latest1%}
                             <div class="col-sm-6 col-md-12">
                                 <div class="latest-movie">
-                                    <a href="single/{{movie.kinopoisk_id}}"><img src="{{movie.poster}}" alt="Movie 1"></a>
+                                    <a href="single/{{movie.kinopoisk_id}}"><img src="{{movie.poster}}"
+                                                                                 alt="Movie 1"></a>
+                                    <h2 class="entry-title"><a href="single/{{movie.kinopoisk_id}}">{{movie.name}}</a>
+                                    </h2>
                                 </div>
                             </div>
                             {%endfor%}
@@ -83,6 +87,7 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="latest-movie">
                             <a href="single/{{movie.kinopoisk_id}}"><img src="{{movie.poster}}" alt="Movie 3"></a>
+                            <h2 class="entry-title"><a href="single/{{movie.kinopoisk_id}}">{{movie.name}}</a></h2>
                         </div>
                     </div>
                     {%endfor%}
