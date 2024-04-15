@@ -1,13 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from movies_app.models import *
-from django.shortcuts import render, redirect
-from .models import Review
 from .forms import ReviewForm
+from .models import Review
+from django.contrib.auth.decorators import *
 
 NAME = "RMDb"
 
 
+# @login_required
 def index(request):
     data = Movie.objects.order_by("-rating_kp")[:10]
     latest_movie1 = Movie.objects.order_by("-year")[:2]
@@ -37,8 +38,9 @@ def joinus(request):
 
 def review(request):
     genres = Genre.objects.all()
-    country = Country.objects.all()
-
+    country = Movie.objects.values("country__name")
+    country = sorted(set(map(lambda x: x['country__name'], country)))
+    print(country)
     user_genre = request.GET.get("genre")
     user_country = request.GET.get("country")
     user_page = int(request.GET.get("page")) if request.GET.get("page") \
@@ -86,3 +88,7 @@ def submit_review(request):
         else:
             form = ReviewForm()
             return 0  # вывод ошибки
+
+
+def profile_views(request):
+    return render(request, 'profile.html')

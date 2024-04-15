@@ -12,7 +12,7 @@
     <link href="../static/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Loading main css file -->
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/main.css">
 
     <!--[if lt IE 9]>
     <script src="../static/js/ie-support/html5.js"></script>
@@ -39,9 +39,9 @@
             <div class="main-navigation">
                 <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                 <ul class="menu">
-                    <li class="menu-item current-menu-item"><a href="/">Главная</a></li>
+                    <li class="menu-item"><a href="/">Главная</a></li>
                     <li class="menu-item"><a href="/about">О нас</a></li>
-                    <li class="menu-item"><a href="/review">Фильмы</a></li>
+                    <li class="menu-item current-menu-item"><a href="/review">Фильмы</a></li>
                     <li class="menu-item"><a href="/joinus">Присоединится к нам</a></li>
                     <li class="menu-item"><a href="/contact">Контакты</a></li>
                 </ul> <!-- .menu -->
@@ -77,11 +77,11 @@
                     <select name="country" id="country" placeholder="Выбери страну" onchange="movies_f()">
                         <option value="any">----</option>
                         {% for country in countries %}
-                        {% if country.name != "No data" %}
-                        {% if country.name == user_country %}
-                        <option value="{{country.name}}" selected>{{country.name}}</option>
+                        {% if country != "No data" %}
+                        {% if country == user_country %}
+                        <option value="{{country}}" selected>{{country}}</option>
                         {% else %}
-                        <option value="{{country.name}}">{{country.name}}</option>
+                        <option value="{{country}}">{{country}}</option>
                         {% endif %}
                         {% endif %}
                         {% endfor %}
