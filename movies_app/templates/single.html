@@ -96,10 +96,11 @@
                         </div>
                     </div> <!-- .row -->
                     <div class="form">
-                        <form method="post">
+                        <form action="/single/new_review" method="POST">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            {{form.errors}
                         </form>
                     </div>
 
