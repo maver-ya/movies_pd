@@ -169,6 +169,7 @@ svg:not(:root) {
 
 figure {
     margin: 0;
+    width: 40%;
 }
 
 fieldset {
