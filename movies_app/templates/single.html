@@ -85,13 +85,12 @@
                                 <li><strong>Год:</strong> {{movie.year}}</li>
                                 <li><strong>Жанры:</strong> {{genres}}</li>
                                 {%if movie.rate != 100%}
+                                <ul class="starring">
+                                    <li><strong>Режиссеры:</strong> {{directors}}</li>
+                                    <li><strong>Актеры:</strong> {{actors}}</li>
+                                </ul>
                                 <li><strong>Возрастной рейтинг: </strong>{{movie.rate}}+</li>
                                 {%endif%}
-                            </ul>
-
-                            <ul class="starring">
-                                <li><strong>Режиссеры:</strong> {{directors}}</li>
-                                <li><strong>Актеры:</strong> {{actors}}</li>
                             </ul>
                         </div>
                     </div> <!-- .row -->
