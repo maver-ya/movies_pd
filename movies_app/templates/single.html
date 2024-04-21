@@ -18,12 +18,10 @@
     <script src="../static/js/ie-support/html5.js"></script>
     <script src="../static/js/ie-support/respond.js"></script>
     <![endif]-->
-
 </head>
 
 
 <body>
-
 
 <div id="site-content">
     <header class="site-header">
@@ -69,7 +67,7 @@
                 <div class="content">
                     <div class="row">
                         <div class="col-md-6">
-                            <figure class="movie-poster"><img src="{{movie.poster}}"></figure>
+                            <figure class="movie-poster"><img src="{{movie.poster}}" width="100%"></figure>
                         </div>
                         <div class="col-md-6">
                             <h2 class="movie-title">{{movie.name}}</h2>
@@ -85,10 +83,8 @@
                                 <li><strong>Год:</strong> {{movie.year}}</li>
                                 <li><strong>Жанры:</strong> {{genres}}</li>
                                 {%if movie.rate != 100%}
-                                <ul class="starring">
-                                    <li><strong>Режиссеры:</strong> {{directors}}</li>
-                                    <li><strong>Актеры:</strong> {{actors}}</li>
-                                </ul>
+                                <li><strong>Режиссеры:</strong> {{directors}}</li>
+                                <li><strong>Актеры:</strong> {{actors}}</li>
                                 <li><strong>Возрастной рейтинг: </strong>{{movie.rate}}+</li>
                                 {%endif%}
                             </ul>
@@ -108,7 +104,26 @@
                         <p>{{review.comments}}</p><br>
                         {% endfor %}
                     </div>
-
+                    <br>
+                    <div>
+                        <h2 class="movie-title">Оцените фильм</h2>
+                    </div>
+                    <div class="form">
+                        <form>
+                            <strong>Абоба</strong><br>
+                            <input type="range" min="0" max="200" value="100"><br>
+                            <strong>Абоба</strong><br>
+                            <input type="range" min="0" max="200" value="100"><br>
+                            <strong>Абоба</strong><br>
+                            <input type="range" min="0" max="200" value="10"><br>
+                            <strong>Абоба</strong><br>
+                            <input type="range" min="0" max="200" value="100"><br>
+                            <strong>Абоба</strong><br>
+                            <input type="range" min="0" max="200" value="10"><br>
+                            <strong>Абоба</strong><br>
+                            <input type="range" min="0" max="200" value="100"><br>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div> <!-- .container -->

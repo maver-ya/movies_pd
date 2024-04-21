@@ -169,7 +169,6 @@ svg:not(:root) {
 
 figure {
     margin: 0;
-    width: 40%;
 }
 
 fieldset {
@@ -2227,8 +2226,8 @@ ul.arrow li a:hover {
 
 .movie-list .movie .movie-poster img {
     display: block;
-    width: 100%;
-    max-width: 100%;
+    width: 200px;
+    max-width: 100px;
     height: auto;
     -webkit-transition: .3s ease;
     transition: .3s ease;
@@ -2338,3 +2337,4 @@ ul.arrow li a:hover {
 .site-footer .colophon {
     padding-top: 30px;
 }
+
