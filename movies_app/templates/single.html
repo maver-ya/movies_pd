@@ -18,6 +18,32 @@
     <script src="../static/js/ie-support/html5.js"></script>
     <script src="../static/js/ie-support/respond.js"></script>
     <![endif]-->
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+  const stars = document.querySelectorAll('.star');
+  const currentRating = document.getElementById('current-rating');
+
+  let selectedRating = 0;
+
+  stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+      selectedRating = index + 1;
+      updateStars();
+    });
+  });
+
+  function updateStars() {
+    stars.forEach((star, index) => {
+      if (index < selectedRating) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    });
+    currentRating.textContent = selectedRating + '/10';
+  }
+});
+</script>
 </head>
 
 
@@ -55,6 +81,7 @@
             <div class="mobile-navigation"></div>
         </div>
     </header>
+
     <main class="main-content">
         <div class="container">
             <div class="page">
@@ -108,24 +135,30 @@
                     <div>
                         <h2 class="movie-title">Оцените фильм</h2>
                     </div>
-                    <div class="form">
-                        <form>
-                            <strong>Абоба</strong><br>
-                            <input type="range" min="0" max="200" value="100"><br>
-                            <strong>Абоба</strong><br>
-                            <input type="range" min="0" max="200" value="100"><br>
-                            <strong>Абоба</strong><br>
-                            <input type="range" min="0" max="200" value="10"><br>
-                            <strong>Абоба</strong><br>
-                            <input type="range" min="0" max="200" value="100"><br>
-                            <strong>Абоба</strong><br>
-                            <input type="range" min="0" max="200" value="10"><br>
-                            <strong>Абоба</strong><br>
-                            <input type="range" min="0" max="200" value="100"><br>
-                        </form>
+                </div>
+            </div>
+            <div>
+                <h3 class="movie-title">Актёрская игра</h3>
+                <div class="movie-rating">
+                    <div class="rating-stars">
+                        <span class="star" data-value="1"></span>
+                        <span class="star" data-value="2"></span>
+                        <span class="star" data-value="3"></span>
+                        <span class="star" data-value="4"></span>
+                        <span class="star" data-value="5"></span>
+                        <span class="star" data-value="6"></span>
+                        <span class="star" data-value="7"></span>
+                        <span class="star" data-value="8"></span>
+                        <span class="star" data-value="9"></span>
+                        <span class="star" data-value="10"></span>
+                    </div>
+                    <div class="rating-value">
+                        <span id="current-rating">0</span>
                     </div>
                 </div>
             </div>
+
+
         </div> <!-- .container -->
     </main>
     <footer class="site-footer">
