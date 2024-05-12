@@ -20,29 +20,37 @@
     <![endif]-->
 <script>
    document.addEventListener('DOMContentLoaded', () => {
-  const stars = document.querySelectorAll('.star');
-  const currentRating = document.getElementById('current-rating');
+  const ratingComponents = document.querySelectorAll('.movie-rating');
+
+  ratingComponents.forEach((ratingComponent) => {
+    initRatingComponent(ratingComponent);
+  });
+});
+
+function initRatingComponent(ratingComponent) {
+  const stars = ratingComponent.querySelectorAll('.star');
+  const ratingValueElement = ratingComponent.querySelector('.rating-value span');
 
   let selectedRating = 0;
 
   stars.forEach((star, index) => {
     star.addEventListener('click', () => {
       selectedRating = index + 1;
-      updateStars();
+      updateStars(stars, selectedRating, ratingValueElement);
     });
   });
+}
 
-  function updateStars() {
-    stars.forEach((star, index) => {
-      if (index < selectedRating) {
-        star.classList.add('active');
-      } else {
-        star.classList.remove('active');
-      }
-    });
-    currentRating.textContent = selectedRating + '/10';
-  }
-});
+function updateStars(stars, selectedRating, ratingValueElement) {
+  stars.forEach((star, index) => {
+    if (index < selectedRating) {
+      star.classList.add('active');
+    } else {
+      star.classList.remove('active');
+    }
+  });
+  ratingValueElement.textContent = `${selectedRating}/10`;
+}
 </script>
 </head>
 
@@ -153,7 +161,87 @@
                         <span class="star" data-value="10"></span>
                     </div>
                     <div class="rating-value">
-                        <span id="current-rating">0</span>
+                        <span id="current-rating1">0</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="movie-title">Сюжет</h3>
+                <div class="movie-rating">
+                    <div class="rating-stars">
+                        <span class="star" data-value="1"></span>
+                        <span class="star" data-value="2"></span>
+                        <span class="star" data-value="3"></span>
+                        <span class="star" data-value="4"></span>
+                        <span class="star" data-value="5"></span>
+                        <span class="star" data-value="6"></span>
+                        <span class="star" data-value="7"></span>
+                        <span class="star" data-value="8"></span>
+                        <span class="star" data-value="9"></span>
+                        <span class="star" data-value="10"></span>
+                    </div>
+                    <div class="rating-value">
+                        <span id="current-rating2">0</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="movie-title">Музыка</h3>
+                <div class="movie-rating">
+                    <div class="rating-stars">
+                        <span class="star" data-value="1"></span>
+                        <span class="star" data-value="2"></span>
+                        <span class="star" data-value="3"></span>
+                        <span class="star" data-value="4"></span>
+                        <span class="star" data-value="5"></span>
+                        <span class="star" data-value="6"></span>
+                        <span class="star" data-value="7"></span>
+                        <span class="star" data-value="8"></span>
+                        <span class="star" data-value="9"></span>
+                        <span class="star" data-value="10"></span>
+                    </div>
+                    <div class="rating-value">
+                        <span id="current-rating3">0</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="movie-title">Операторская работа</h3>
+                <div class="movie-rating">
+                    <div class="rating-stars">
+                        <span class="star" data-value="1"></span>
+                        <span class="star" data-value="2"></span>
+                        <span class="star" data-value="3"></span>
+                        <span class="star" data-value="4"></span>
+                        <span class="star" data-value="5"></span>
+                        <span class="star" data-value="6"></span>
+                        <span class="star" data-value="7"></span>
+                        <span class="star" data-value="8"></span>
+                        <span class="star" data-value="9"></span>
+                        <span class="star" data-value="10"></span>
+                    </div>
+                    <div class="rating-value">
+                        <span id="current-rating4">0</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="movie-title">Визуальные эффекты</h3>
+                <div class="movie-rating">
+                    <div class="rating-stars">
+                        <span class="star" data-value="1"></span>
+                        <span class="star" data-value="2"></span>
+                        <span class="star" data-value="3"></span>
+                        <span class="star" data-value="4"></span>
+                        <span class="star" data-value="5"></span>
+                        <span class="star" data-value="6"></span>
+                        <span class="star" data-value="7"></span>
+                        <span class="star" data-value="8"></span>
+                        <span class="star" data-value="9"></span>
+                        <span class="star" data-value="10"></span>
+                    </div>
+                    <div class="rating-value">
+                        <span id="current-rating5">0</span>
                     </div>
                 </div>
             </div>

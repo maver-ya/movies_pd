@@ -2352,18 +2352,26 @@ ul.arrow li a:hover {
 
 .star {
   display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  background-color: #ccc;
-  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
   margin-right: 0.25rem;
   box-sizing: border-box;
-  transition: background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
   cursor: pointer;
+  text-align: center;
+  line-height: 2.5rem;
+  font-size: 1.5rem;
+  color: #ccc;
 }
 
-.star.active {
-  background-color: #ff8000;
+.star.active,
+.star:hover {
+  color: #ff8000;
+}
+
+.star:before {
+  content: '★';
 }
 
 .rating-value {
