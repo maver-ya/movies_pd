@@ -73,21 +73,24 @@ def single(request, id):
     str_genre = '/'.join(list(map(lambda x: x.name.capitalize(), genres)))
 
     data = {"reviews": reviews, "movie": movie, 'actors': str_actors, "directors": str_directors, "genres": str_genre,
-            "title": NAME}
+            "title": NAME, "form": ReviewForm(initial={'movie': movie, 'user': User.objects.get()})}
     return render(request, 'single.html', context=data)
 
 
 def submit_review(request):
+    print(request.POST)
     if request.method == 'POST':
         form = ReviewForm(request.POST)
+        print(form.get_context())
         if form.is_valid():
             new_review = form.save(commit=False)
             new_review.user = request.user
             new_review.save()
             return redirect(request.META['HTTP_REFERER'])
         else:
+            print("NO OK")
             form = ReviewForm()
-            return 0  # вывод ошибки
+            return render(request, '404.html')  # вывод ошибки
 
 
 def profile_views(request):
