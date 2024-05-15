@@ -39,14 +39,14 @@
                 <ul class="menu">
                     <li class="menu-item current-menu-item"><a href="/">Главная</a></li>
                     <li class="menu-item"><a href="/about">О нас</a></li>
-                    <li class="menu-item"><a href="/review/?genre=any&country=any&page=0">Фильмы</a></li>
+                    <li class="menu-item"><a href="/review/?genre=any&country=any&page=0&search=">Фильмы</a></li>
                     <li class="menu-item"><a href="/joinus">Присоединится к нам</a></li>
                     <li class="menu-item"><a href="/contact">Контакты</a></li>
                 </ul> <!-- .menu -->
 
-                <form action="#" class="search-form">
-                    <input type="text" placeholder="Поиск...">
-                    <button><i class="fa fa-search"></i></button>
+                <form action="get" class="search-form" id="searchForm">
+                    <input type="text" name="search" id="searchFormInput" placeholder="Поиск...">
+                    <button type="reset"><i class="fa fa-search"></i></button>
                 </form>
             </div> <!-- .main-navigation -->
 

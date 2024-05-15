@@ -10,11 +10,11 @@
             $(".mobile-navigation").slideToggle();
         });
         // $(".search-form button").click(function () {
-        //     $(this).toggleClass("active");
-        //     $(this).setAttribute("type", "submit");
-        //     var $parent = $(this).parent(".search-form");
-        //
-        //     $parent.find("input").toggleClass("active").focus();
+            // $(this).toggleClass("active");
+            // $(this).setAttribute("type", "submit");
+            // var $parent = $(this).parent(".search-form");
+
+            // $parent.find("input").toggleClass("active").focus();
         // });
 
 

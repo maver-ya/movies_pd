@@ -44,11 +44,15 @@ def review(request):
     user_country = request.GET.get("country")
     user_page = int(request.GET.get("page")) if request.GET.get("page") \
         else 0
+    search = request.GET.get("search")
     print(user_page)
     ch_genres = [user_genre] if user_genre != "any" else list(map(lambda x: x, genres))
     ch_countries = [user_country] if user_country != "any" else list(map(lambda x: x, country))
 
-    movies = Movie.objects.filter(genre__name__in=ch_genres) & Movie.objects.filter(country__name__in=ch_countries)
+    if search is None:
+        movies = Movie.objects.filter(genre__name__in=ch_genres) & Movie.objects.filter(country__name__in=ch_countries)
+    else:
+        movies = Movie.objects.filter(genre__name__in=ch_genres) & Movie.objects.filter(country__name__in=ch_countries) & Movie.objects.filter(name__contains=search)
 
     movies = movies.distinct().order_by("kinopoisk_id")[user_page * 8:user_page * 8 + 8]
     if user_genre == "any": user_genre = "---"

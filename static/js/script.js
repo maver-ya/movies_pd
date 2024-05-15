@@ -12,12 +12,12 @@ function movies_f(page= -1) {
     if (page === -1) {
         page = 0;
     }
-    let searchParam = document.getElementById("searchFormInput").value;
-    document.location.search = `?genre=${genre}&country=${country}&page=${page}&search=${searchParam}`;
+    let searchParam = document.getElementById("searchFormInput").innerHTML;
+    document.location.search = `${document.location.search}?genre=${genre}&country=${country}&page=${page}&search=${searchParam}`;
     console.log('123');
 }
 
 function movies_search() {
     let searchParam = document.getElementById("searchFormInput").innerHTML;
-    document.location.search = `search=${searchParam}`;
+    document.location.search = `${document.location.search}&search=${searchParam}`;
 }
